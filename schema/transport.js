@@ -28,10 +28,10 @@ module.exports = {
 				type: 'string',
 				maxLength: 64
 			},
-			broadhash: {
+			/*broadhash: {
 				type: 'string',
 				format: 'hex'
-			},
+			},*/
 			height: {
 				type: 'integer',
 				minimum: 1
