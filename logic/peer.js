@@ -16,7 +16,6 @@ Peer.prototype.properties = [
 	'os',
 	'version',
 	'dappid',
-	'broadhash',
 	'height',
 	'clock',
 	'updated'
@@ -32,7 +31,6 @@ Peer.prototype.headers = [
 	'os',
 	'version',
 	'dappid',
-	'broadhash',
 	'height'
 ];
 
@@ -40,7 +38,6 @@ Peer.prototype.nullable = [
 	'os',
 	'version',
 	'dappid',
-	'broadhash',
 	'height',
 	'clock',
 	'updated'
