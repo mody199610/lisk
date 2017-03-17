@@ -32,7 +32,7 @@ __private.countByFilter = function (filter, cb) {
 };
 
 __private.getByFilter = function (filter, cb) {
-	var allowedFields = ['ip', 'port', 'state', 'os', 'version', 'broadhash', 'height'];
+	var allowedFields = ['ip', 'port', 'state', 'os', 'version', 'height'];
 	var limit  = filter.limit ? Math.abs(filter.limit) : null;
 	var offset = filter.offset ? Math.abs(filter.offset) : 0;
 
@@ -182,9 +182,6 @@ __private.dbSave = function (cb) {
 	// Creating set of columns
 	var cs = new pgp.helpers.ColumnSet([
 		'ip', 'port', 'state', 'height', 'os', 'version', 'clock',
-		{name: 'broadhash', def: null, init: function (col) {
-			return col.value ? new Buffer(col.value, 'hex') : null;
-		}}
 	], {table: 'peers'});
 
 	// Generating insert query
@@ -388,7 +385,14 @@ Peers.prototype.list = function (options, cb) {
 				// Unmatched broadhash
 				return randomList(options, peers, waterCb);
 			} else {
-				return setImmediate(waterCb, null, peers);
+				function (peers, waterCb) {
+			options.matched = peers.length;
+			options.limit -= peers.length;
+			++options.attempt;
+			if (options.limit > 0) {
+				// Unmatched broadhash
+				return randomList(options, peers, waterCb);
+				//return setImmediate(waterCb, null, peers);
 			}
 		}
 	], function (err, peers) {
