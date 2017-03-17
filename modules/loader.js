@@ -472,9 +472,9 @@ __private.sync = function (cb) {
 		loadBlocksFromNetwork: function (seriesCb) {
 			return __private.loadBlocksFromNetwork(seriesCb);
 		},
-		updateSystem: function (seriesCb) {
+		/*updateSystem: function (seriesCb) {
 			return modules.system.update(seriesCb);
-		},
+		},*/
 		getPeersAfter: function (seriesCb) {
 			library.logger.debug('Establishing broadhash consensus after sync');
 			return modules.transport.getPeers({limit: constants.maxPeers}, seriesCb);
