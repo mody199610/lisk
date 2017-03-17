@@ -22,7 +22,7 @@ function System (cb, scope) {
 	__private.port = library.config.port;
 	__private.height = 1;
 	__private.nethash = library.config.nethash;
-	__private.broadhash = library.config.nethash;
+	//__private.broadhash = library.config.nethash;
 	__private.minVersion = library.config.minVersion;
 
 	if (rcRegExp.test(__private.minVersion)) {
@@ -86,7 +86,7 @@ System.prototype.versionCompatible = function (version) {
 	return semver.satisfies(version, this.minVersion);
 };
 
-System.prototype.getBroadhash = function (cb) {
+/*System.prototype.getBroadhash = function (cb) {
 	if (typeof cb !== 'function') {
 		return __private.broadhash;
 	}
@@ -104,11 +104,11 @@ System.prototype.getBroadhash = function (cb) {
 		library.logger.error(err.stack);
 		return setImmediate(cb, err);
 	});
-};
+};*/
 
 System.prototype.update = function (cb) {
 	async.series({
-		getBroadhash: function (seriesCb) {
+		/*getBroadhash: function (seriesCb) {
 			self.getBroadhash(function (err, hash) {
 				if (!err) {
 					__private.broadhash = hash;
@@ -116,7 +116,7 @@ System.prototype.update = function (cb) {
 
 				return setImmediate(seriesCb);
 			});
-		},
+		},*/
 		getHeight: function (seriesCb) {
 			__private.height = modules.blocks.getLastBlock().height;
 			return setImmediate(seriesCb);
