@@ -42,10 +42,10 @@ module.exports = {
 					minLength: 5,
 					maxLength: 12
 				},
-				broadhash: {
+				/*broadhash: {
 					type: 'string',
 					format: 'hex'
-				},
+				},*/
 				height: {
 					type: 'integer',
 					minimum: 1
@@ -84,10 +84,10 @@ module.exports = {
 				minLength: 5,
 				maxLength: 12
 			},
-			broadhash: {
+			/*broadhash: {
 				type: 'string',
 				format: 'hex'
-			},
+			},*/
 			height: {
 				type: 'integer',
 				minimum: 1
