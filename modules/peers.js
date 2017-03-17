@@ -352,7 +352,7 @@ Peers.prototype.list = function (options, cb) {
 
 			found = peersList.length;
 			// Apply filters
-			peersList = peersList.filter(function (peer) {
+			/*peersList = peersList.filter(function (peer) {
 				if (options.broadhash) {
 					// Skip banned peers (state 0)
 					return peer.state > 0 && (
@@ -364,7 +364,7 @@ Peers.prototype.list = function (options, cb) {
 				} else {
 					// Skip banned peers (state 0)
 					return peer.state > 0;
-				}
+				}*/
 			});
 			matched = peersList.length;
 			// Apply limit
