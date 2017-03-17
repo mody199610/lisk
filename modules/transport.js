@@ -175,7 +175,7 @@ Transport.prototype.headers = function (headers) {
 	return __private.headers;
 };
 
-Transport.prototype.consensus = function () {
+/*Transport.prototype.consensus = function () {
 	return __private.broadcaster.consensus;
 };
 
@@ -185,7 +185,7 @@ Transport.prototype.poorConsensus = function () {
 	} else {
 		return (__private.broadcaster.consensus < constants.minBroadhashConsensus);
 	}
-};
+};*/
 
 Transport.prototype.getPeers = function (params, cb) {
 	return __private.broadcaster.getPeers(params, cb);
@@ -313,11 +313,10 @@ Transport.prototype.onUnconfirmedTransaction = function (transaction, broadcast)
 
 Transport.prototype.onNewBlock = function (block, broadcast) {
 	if (broadcast) {
-		var broadhash = modules.system.getBroadhash();
 
 		modules.system.update(function () {
 			if (!__private.broadcaster.maxRelays(block)) {
-				__private.broadcaster.broadcast({limit: constants.maxPeers, broadhash: broadhash}, {api: '/blocks', data: {block: block}, method: 'POST', immediate: true});
+				__private.broadcaster.broadcast({limit: constants.maxPeers}, {api: '/blocks', data: {block: block}, method: 'POST', immediate: true});
 			}
 			library.network.io.sockets.emit('blocks/change', block);
 		});
